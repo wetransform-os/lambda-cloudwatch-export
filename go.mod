@@ -1,4 +1,4 @@
-module github.com/Ready-Responders/cloudwatch-export/m
+module github.com/Ready-Responders/lambda-cloudwatch-export/m
 
 go 1.16
 
