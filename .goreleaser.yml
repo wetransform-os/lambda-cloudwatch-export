@@ -17,4 +17,4 @@ snapshot:
 archives:
   - format: zip
     files:
-      - none*
+      - LICENSE
