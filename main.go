@@ -32,11 +32,11 @@ func ExportLogs(conf BucketExportConfigs) (s string, err error) {
 	fmt.Printf("Exporting log group %s to s3://%s/%s\n", conf.LogGroup, conf.S3Bucket, conf.S3Prefix)
 	yesterday := time.Now().AddDate(0, 0, -1)
 
-	fmt.Println(conf.S3Prefix + "/" + yesterday.Format("year=2006/month=01/day=02"))
+	fmt.Println(conf.S3Prefix + "/" + yesterday.Format("2006/01/02"))
 	client := cloudwatchlogs.New(sess)
 	params := &cloudwatchlogs.CreateExportTaskInput{
 		Destination:       aws.String(conf.S3Bucket),
-		DestinationPrefix: aws.String(conf.S3Prefix + "/" + yesterday.Format("year=2006/month=01/day=02")),
+		DestinationPrefix: aws.String(conf.S3Prefix + "/" + yesterday.Format("2006/01/02")),
 		From:              aws.Int64(now.New(yesterday).BeginningOfDay().Unix() * 1000),
 		LogGroupName:      aws.String(conf.LogGroup),
 		TaskName:          aws.String("exporter"),
