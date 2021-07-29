@@ -1,8 +1,5 @@
 build:
 	goreleaser --rm-dist --snapshot
-	
-zip: build
-	cd build && zip cloudwatch-export.zip cloudwatch-export
 
 release:
 	goreleaser --rm-dist
