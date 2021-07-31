@@ -1,5 +1,10 @@
+before:
+  hooks:
+    - go mod download
+
 builds:
   - binary: cloudwatch-export
+    id: "cloudwatch-export"
     main: main.go
     goos:
       - linux
@@ -7,9 +12,9 @@ builds:
       - amd64
 
 snapshot:
-  name_template: SNAPSHOT-{{.Commit}}
-      
-archive:
-  format: zip
-  files:
-    - LICENSE
+  name_template: "{{ .Tag }}"
+
+archives:
+  - format: zip
+    files:
+      - LICENSE
