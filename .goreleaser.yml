@@ -3,13 +3,17 @@ before:
     - go mod download
 
 builds:
-  - binary: cloudwatch-export
+    # bootstrap must be used as executable name for AWS Lambda Amazon Linux runtime
+    # see https://aws.amazon.com/de/blogs/compute/migrating-aws-lambda-functions-from-the-go1-x-runtime-to-the-custom-runtime-on-amazon-linux-2/
+  - binary: bootstrap
     id: "cloudwatch-export"
     main: main.go
     goos:
       - linux
     goarch:
       - amd64
+    tags:
+      - lambda.norpc
 
 snapshot:
   name_template: "{{ .Tag }}"
